@@ -1,6 +1,6 @@
 # zenn-style-markdown-preview README
 
-Zenn スタイルの Markdown をプレビューする拡張です。ディレクトリの構成は問わず、VS Code 上アクティブな Markdown エディタに反応し、プレビュー画面を表示します。変換APIのデフォルトURLは個人でデプロイしたものを利用しており、予告なく停止する場合があります。設定でご自身がデプロイしたURLに置換できます。
+Zenn スタイルの Markdown をプレビューする非公式の拡張です。ディレクトリの構成は問わず、VS Code 上アクティブな Markdown エディタに反応し、プレビュー画面を表示します。zenn-cli や Node.js は必要ありません。`github.dev`などのブラウザ環境でも動作します。変換APIのデフォルトURLは個人でデプロイしたものを利用しており、予告なく停止する場合があります。設定でご自身がデプロイしたURLに置換できます。
 
 ## Features
 
@@ -20,13 +20,6 @@ https://github.com/cm-wada-yusuke/vscode-extension-zn-style-markdown-preview/tre
 ## Known Issues
 
 スクロール同期は未実装です。
-
-## Release Notes
-
-### 0.0.1
-
-初回リリース。
-
 
 ## LICENSE
 
