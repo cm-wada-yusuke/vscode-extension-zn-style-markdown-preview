@@ -1,0 +1,73 @@
+{
+  "name": "zenn-style-markdown-preview",
+  "displayName": "zenn-style-markdown-preview",
+  "description": "Zenn style markdown preview",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "publisher": "waddy",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:zenn-style-markdown-preview.show"
+  ],
+  "browser": "./dist/web/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "zenn-style-markdown-preview.show",
+        "title": "Show preview zenn-style-markdown document"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "ZennStyleMarkdownPreview",
+      "properties": {
+        "zennStyleMarkdownPreview.markdownToHtmlUrl": {
+          "type": "string",
+          "default": "https://asia-northeast1-parity-box.cloudfunctions.net/zennStyleMarkdownToHtml",
+          "description": "Markdown to Html API URL"
+        },
+        "zennStyleMarkdownPreview.imageRootDir": {
+          "type": "string",
+          "default": "/",
+          "description": "Extension will convert imageTags from '/images/xxx.png' to '{imageRootDir}/images/xxx.png'"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "pretest": "yarn run compile-web",
+    "vscode:prepublish": "yarn run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts",
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.0",
+    "@types/vscode": "^1.72.0",
+    "@types/vscode-webview": "^1.57.0",
+    "@types/webpack-env": "^1.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "@vscode/test-web": "^0.0.30",
+    "assert": "^2.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.24.0",
+    "mocha": "^10.0.0",
+    "prettier": "^2.7.1",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "vsce": "^2.12.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "write-file-webpack-plugin": "^4.5.1",
+    "zenn-content-css": "^0.1.131"
+  }
+}

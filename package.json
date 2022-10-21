@@ -1,0 +1,11 @@
+{
+  "name": "zenn-style-markdown-preview",
+  "version": "0.0.1",
+  "description": "Zenn style markdown preview api and vscode extension.",
+  "license": "MIT",
+  "dependencies": {
+    "generator-code": "^1.7.0",
+    "vsce": "^2.12.0",
+    "yo": "^4.3.0"
+  }
+}

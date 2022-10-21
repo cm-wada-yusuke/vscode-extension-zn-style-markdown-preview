@@ -1,0 +1,7 @@
+.git
+.gitignore
+.prettierrc.json
+deploy.sh
+node_modules/
+README.md
+*.spec.ts
