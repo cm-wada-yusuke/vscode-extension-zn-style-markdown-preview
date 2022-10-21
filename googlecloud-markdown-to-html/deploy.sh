@@ -1,5 +1,5 @@
 gcloud functions deploy \
-zennStyleMarkdownToHtml \
+zennStyleMarkdownToHtmlForMe \
 --trigger-http \
 --region=asia-northeast1 \
 --source=./dist \

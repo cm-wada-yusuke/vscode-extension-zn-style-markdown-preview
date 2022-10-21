@@ -40,13 +40,14 @@ gcloud config set core/account myaccountxxxxxxxxxx@gmail.com
 ```
 yarn build
 
+gcloud config configurations activate my-project
 gcloud auth login
 
 # ログイン後
-./deploy.sh
+./deploy.sh my-project
 ```
 
-最初のデプロイでは、以下のようにPIを有効にするかどうか聞かれる場合があります。yでデプロイを進めてください。
+最初のデプロイでは、以下のようにAPIを有効にするかどうか聞かれる場合があります。yでデプロイを進めてください。
 
 ```
 API [cloudfunctions.googleapis.com] not enabled on project [0000000000]. Would you like to enable and retry (this will take a few minutes)? (y/N)?  y
