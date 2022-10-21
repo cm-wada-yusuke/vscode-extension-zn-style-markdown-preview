@@ -2,6 +2,10 @@
   "name": "zenn-style-markdown-preview",
   "displayName": "zenn-style-markdown-preview",
   "description": "Zenn style markdown preview",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cm-wada-yusuke/vscode-extension-zn-style-markdown-preview.git"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.72.0"
