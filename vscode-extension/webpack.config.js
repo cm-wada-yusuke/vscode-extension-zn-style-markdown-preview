@@ -4,32 +4,32 @@
  *--------------------------------------------------------------------------------------------*/
 
 //@ts-check
-"use strict";
+'use strict';
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
-const path = require("path");
-const webpack = require("webpack");
-const CopyFilePlugin = require("copy-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const CopyFilePlugin = require('copy-webpack-plugin');
 
 /** @type WebpackConfig */
 const webExtensionConfig = {
-  mode: "none", // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
-  target: "webworker", // extensions run in a webworker context
+  mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
+  target: 'webworker', // extensions run in a webworker context
   entry: {
-    extension: "./src/web/extension.ts",
-    "test/suite/index": "./src/web/test/suite/index.ts",
+    extension: './src/web/extension.ts',
+    'test/suite/index': './src/web/test/suite/index.ts',
   },
   output: {
-    filename: "[name].js",
-    path: path.join(__dirname, "./dist/web"),
-    libraryTarget: "commonjs",
-    devtoolModuleFilenameTemplate: "../../[resource-path]",
+    filename: '[name].js',
+    path: path.join(__dirname, './dist/web'),
+    libraryTarget: 'commonjs',
+    devtoolModuleFilenameTemplate: '../../[resource-path]',
   },
   resolve: {
-    mainFields: ["browser", "module", "main"], // look for `browser` entry point in imported node modules
-    extensions: [".ts", ".js"], // support ts-files and js-files
+    mainFields: ['browser', 'module', 'main'], // look for `browser` entry point in imported node modules
+    extensions: ['.ts', '.js'], // support ts-files and js-files
     alias: {
       // provides alternate implementation for node module and source files
     },
@@ -37,7 +37,7 @@ const webExtensionConfig = {
       // Webpack 5 no longer polyfills Node.js core modules automatically.
       // see https://webpack.js.org/configuration/resolve/#resolvefallback
       // for the list of Node.js core module polyfills.
-      assert: require.resolve("assert"),
+      assert: require.resolve('assert'),
     },
   },
   module: {
@@ -47,7 +47,7 @@ const webExtensionConfig = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
           },
         ],
       },
@@ -58,27 +58,26 @@ const webExtensionConfig = {
       maxChunks: 1, // disable chunks by default since web extensions must be a single bundle
     }),
     new webpack.ProvidePlugin({
-      process: "process/browser", // provide a shim for the global `process` variable
+      process: 'process/browser', // provide a shim for the global `process` variable
     }),
     new CopyFilePlugin({
       patterns: [
         {
-          context: "node_modules",
-          from: "zenn-content-css/lib/index.css",
-        //   to: ".dist/web",
+          context: 'node_modules',
+          from: 'zenn-content-css/lib/index.css',
         },
       ],
     }),
   ],
   externals: {
-    vscode: "commonjs vscode", // ignored because it doesn't exist
+    vscode: 'commonjs vscode', // ignored because it doesn't exist
   },
   performance: {
     hints: false,
   },
-  devtool: "nosources-source-map", // create a source map that points to the original source file
+  devtool: 'nosources-source-map', // create a source map that points to the original source file
   infrastructureLogging: {
-    level: "log", // enables logging required for problem matchers
+    level: 'log', // enables logging required for problem matchers
   },
 };
 

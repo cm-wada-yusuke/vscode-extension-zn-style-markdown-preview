@@ -1,12 +1,13 @@
 {
   "name": "zenn-style-markdown-preview",
-  "displayName": "zenn-style-markdown-preview",
+  "displayName": "Zenn Style Markdown Preview",
   "description": "Zenn style markdown preview ( unofficial )",
+  "icon": "logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/cm-wada-yusuke/vscode-extension-zn-style-markdown-preview.git"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.72.0"
   },
