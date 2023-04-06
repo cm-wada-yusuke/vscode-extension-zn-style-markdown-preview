@@ -106,6 +106,11 @@ export class PreviewPanel {
           code {
             color: unset;
           }
+          a {
+            color: unset;
+            cursor: unset;
+            text-decoration: unset;
+          }
           div.znc {
             margin-top: 32px;
           }
@@ -115,21 +120,62 @@ export class PreviewPanel {
         <script>
         const vscode = acquireVsCodeApi();
         const previousState = vscode.getState();
+
+        /**
+         * thanks: https://www.white-space.work/get-scroll-vertical-position-in-javascript/
+         * 一番上なら top、一番下なら bottom、その他は scrolling の文字列を返す
+         * 
+         * @param {UIEvent} event
+         * @returns {String} 'top' | 'bottom' | 'scrolling'
+         */
+        const getScrollVerticalPosition = e => {
+          console.log(e);
+          const {
+            scrollHeight, scrollTop, clientHeight
+          } = e.target.scrollingElement;
+
+          const isScrollTop = scrollTop === 0;
+          const isScrollBottom = scrollHeight - clientHeight <= scrollTop;
+          console.log({ isScrollTop, isScrollBottom, scrollTop, scrollHeight, clientHeight });
+          
+          if (isScrollTop) {
+            return 'top';
+          } else if (isScrollBottom) {
+            return 'bottom';
+          } else {
+            return 'scrolling';
+          }
+        }
     
-        window.onload = function() {
-          let scrollPositionY = window.scrollY;
-    
+        window.onload = () => {
+          
+          //末尾フラグが有効な場合、末尾までスクロールする
+          if(previousState && previousState.isScrollBottom) {
+            // 末尾までスクロールする
+            window.scrollTo(0, document.body.scrollHeight);
+            return;
+          }
+          
           //stateにスクロール位置が残っていればそれを使う
+          let scrollPositionY = window.scrollY;
           if(previousState && previousState.scrollPositionY){
             scrollPositionX = previousState.scrollPositionY;
           }
           window.scroll(0, scrollPositionY);
+
         };
     
         //スクロール位置を保存する
-        window.onscroll = () => {
+        window.onscroll = (e) => {
           const scrollPositionY = window.scrollY;
           vscode.setState({ scrollPositionY });
+
+          const position = getScrollVerticalPosition(e);
+          if (position === 'bottom') {
+            vscode.setState({ isScrollBottom: true });
+          } else {
+            vscode.setState({ isScrollBottom: false });
+          }
         };
         </script>
       </head>
